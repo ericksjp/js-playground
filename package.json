@@ -4,13 +4,17 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "build": "babel src -d build"
+    "build": "babel src -d transpiled && webpack"
   },
   "devDependencies": {
     "@babel/cli": "^7.23.0",
     "@babel/core": "^7.23.2",
     "@babel/preset-env": "^7.23.2",
-    "@babel/preset-react": "^7.22.15"
+    "@babel/preset-react": "^7.22.15",
+    "clean-webpack-plugin": "^4.0.0",
+    "html-webpack-plugin": "^5.5.3",
+    "webpack": "^5.89.0",
+    "webpack-cli": "^5.1.4"
   },
   "dependencies": {
     "react": "17.0.1",
