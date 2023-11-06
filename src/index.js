@@ -1,4 +1,7 @@
-const user = {}
+import React from "react";
+import ReactDOM from "react-dom";
 
-// Optional chaining
-console.log(user?.adress?.street);
+ReactDOM.render(
+    <h1>Olá Mundo!</h1>,
+    document.querySelector("#root")
+)
