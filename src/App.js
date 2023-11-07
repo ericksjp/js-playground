@@ -4,20 +4,29 @@ import Header from "./Header";
 
 function App() {
   const [posts, setPosts] = useState([
-      { title: 'Title#01', subtitle: 'Sub#01', likes: 20},
-      { title: 'Title#02', subtitle: 'Sub#02', likes: 10},
-      { title: 'Title#03', subtitle: 'Sub#03', likes: 80},
+      { id: Math.random(), title: 'Title#01', subtitle: 'Sub#01', likes: 20, read: true},
+      { id: Math.random(), title: 'Title#02', subtitle: 'Sub#02', likes: 10, read: false},
+      { id: Math.random(), title: 'Title#03', subtitle: 'Sub#03', likes: 80, read: false},
   ]);
 
   function handleRefresh() {
+    // toda vez que fazemos a atualização do estado baseado no estado anterior, não acessamos
     setPosts((prevState) => [ //se depender do valor anterior para executar essa função, usar o prevState
       ...prevState,
       {
+        id: Math.random(),
         title: `Title#0${prevState.length + 1}`,
         subtitle: `Sub#0${prevState.length + 1}`,
         likes: 20,
+        read: false,
       },
     ]);
+  }
+
+  function handleRemovePost(postId) {
+    setPosts((prevState) => [
+      ...prevState.filter((post) => postId !== post.id)
+    ])
   }
 
   return (
@@ -31,42 +40,15 @@ function App() {
 
       <hr />
 
-      {posts.map((post, index) => {
+      {posts.map((post) => {
         return (
           <Post
-            key={index}
-            likes={post.likes}
-            post={{
-              title: post.title,
-              subtitle: post.subtitle,
-            }}
+            key={post.id}
+            onRemove={handleRemovePost}
+            post={post}
           />
         );
       })}
-
-      {/* <Post 
-        likes = {20}
-        post = {{
-          title: "Titulo da noticia 01",
-          subtitle: "Subtitulo da noticia 01"
-        }}
-      />
-
-      <Post 
-        likes={10}
-        post = {{
-          title: "Titulo da noticia 02",
-          subtitle: "Subtitulo da noticia 02"
-        }}
-      />
-
-      <Post 
-        likes={20}
-        post = {{
-          title: "Titulo da noticia 03",
-          subtitle: "Subtitulo da noticia 03"
-        }}
-      /> */}
     </>
   );
 }
