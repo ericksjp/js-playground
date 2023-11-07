@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import Post from "./Post";
 import Header from "./Header";
 
+import { ThemeProvider } from './ThemeContext';
+
 function App() {
   const [posts, setPosts] = useState([
       { id: Math.random(), title: 'Title#01', subtitle: 'Sub#01', likes: 20, read: true},
@@ -10,7 +12,7 @@ function App() {
   ]);
 
   function handleRefresh() {
-    // toda vez que fazemos a atualização do estado baseado no estado anterior, não acessamos
+    // toda vez que fazemos a atualização do estado baseado no estado anterior, não acessamos o 'objeto' diretamente, usamos o prevState.
     setPosts((prevState) => [ //se depender do valor anterior para executar essa função, usar o prevState
       ...prevState,
       {
@@ -30,11 +32,11 @@ function App() {
   }
 
   return (
-    <>
+    <ThemeProvider>
       <Header title="Blog Do maluco">
         <h2>
           Posts da Semana
-          <button onClick={handleRefresh}>Atualizar</button>
+          <button onClick={() => handleRefresh()}>Atualizar</button>
         </h2>
       </Header>
 
@@ -42,14 +44,14 @@ function App() {
 
       {posts.map((post) => {
         return (
-          <Post
-            key={post.id}
-            onRemove={handleRemovePost}
-            post={post}
+          <Post 
+            key={post.id} 
+            onRemove={handleRemovePost} 
+            post={post} 
           />
-        );
+        )
       })}
-    </>
+    </ThemeProvider>
   );
 }
 
