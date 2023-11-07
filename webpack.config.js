@@ -22,8 +22,7 @@ module.exports = {
         use: "babel-loader",
       },
       {
-        test: /\.css$/,
-        exclude: /node_modules/,
+        test: /\.scss$/,
         use: [
           "style-loader",
           {
@@ -32,6 +31,7 @@ module.exports = {
               modules: true,
             },
           },
+          "sass-loader",
         ],
       },
     ],
