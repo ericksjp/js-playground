@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import PostHeader from "./PostHeader";
 
 import styles from './Post.scss'
+import * as $ from './styles'
 
 function Post(props) {
   // if (props.post.read) { renderização condicional
@@ -26,10 +27,9 @@ function Post(props) {
           read: props.post.read,
         }}
       />
-      <br />
-      <small>{props.post.subtitle}</small>
-      <br />
-      Media: {props.likes / 2}
+
+      <$.Subtitulo>{props.post.subtitle}</$.Subtitulo>
+      <$.Rate >Media: {props.likes / 2}</$.Rate>
     </article>
   );
 }

@@ -5,7 +5,7 @@ import Header from "../Header";
 
 import { ThemeProvider } from '../../context/ThemeContext';
 
-import styles from './App.scss'
+import { Title } from './styles'
 
 function App() {
   const [posts, setPosts] = useState([
@@ -42,10 +42,10 @@ function App() {
   return (
     <ThemeProvider>
       <Header title="Blog Do maluco">
-        <h2 className={styles.title}>
+        <Title as="h2">
           Posts da Semana
           <button onClick={() => handleRefresh()}>Atualizar</button>
-        </h2>
+        </Title>
       </Header>
 
       <hr />
