@@ -3,7 +3,7 @@ resource "aws_apigatewayv2_integration" "messages_integration" {
   api_id = aws_apigatewayv2_api.messages_api.id // gateway
   integration_type = "AWS_PROXY" // gateway will act as a proxy
   integration_uri = aws_lambda_function.js_message_lambda.invoke_arn // lambda
-  integration_method = "ANY"
+  integration_method = "POST"
 }
 
 # get route
