@@ -1,0 +1,20 @@
+{
+  "name": "src",
+  "version": "1.0.0",
+  "main": "src/HandleMessage.ts",
+  "scripts": {
+    "build": "node build.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@types/node": "^24.1.0",
+    "esbuild": "^0.25.8"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.859.0",
+    "uuid": "^11.1.0"
+  }
+}
