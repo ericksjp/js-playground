@@ -8,14 +8,14 @@ resource "aws_apigatewayv2_integration" "messages_integration" {
 
 # get route
 resource "aws_apigatewayv2_route" "get_messages_route" {
-  api_id = aws_apigatewayv2_integration.messages_integration.id
+  api_id = aws_apigatewayv2_api.messages_api.id
   route_key = "GET /messages"
   target = "integrations/${aws_apigatewayv2_integration.messages_integration.id}"
 }
 
 # post route
 resource "aws_apigatewayv2_route" "post_messages_route" {
-  api_id = aws_apigatewayv2_integration.messages_integration.id
+  api_id = aws_apigatewayv2_api.messages_api.id
   route_key = "POST /messages"
   target = "integrations/${aws_apigatewayv2_integration.messages_integration.id}"
 }
@@ -31,5 +31,5 @@ resource "aws_lambda_permission" "messages_api_lambda_permission" {
 
 # output the api endpoint
 output "messages_api_endpoint" {
-  value = aws_apigatewayv2_api.messages_api.api_endpoint
+  value = aws_apigatewayv2_stage.dev_stage.invoke_url
 }
