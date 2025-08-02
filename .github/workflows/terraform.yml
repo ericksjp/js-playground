@@ -3,7 +3,7 @@ name: 'Terraform'
 on:
   push:
     branches: ["terraform-aws"]
-  pull request:
+  pull_request:
     branches: ["terraform-aws"]
 
 permissions:
@@ -29,8 +29,8 @@ jobs:
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          aws-acess-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-acess-key: ${{ secrets.AWS_SECRET_ACESS_KEY }}
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_REGION }} 
 
       - name: Terraform Init
@@ -50,4 +50,4 @@ jobs:
       # run only for push events
       - name: Terraform Apply
         if: github.event_name == 'push'
-        run: terraform aply -auto-approve -input=false
+        run: terraform apply -auto-approve -input=false
